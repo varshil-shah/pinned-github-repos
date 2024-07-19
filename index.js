@@ -33,6 +33,10 @@ exports.handler = async (event) => {
   if (!username) {
     return {
       statusCode: 400,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": "Content-Type",
+      },
       body: JSON.stringify({ message: "Username is required!" }),
     };
   }
@@ -63,6 +67,10 @@ exports.handler = async (event) => {
 
     return {
       statusCode: 200,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": "Content-Type",
+      },
       body: JSON.stringify({
         status: "success",
         results: data.data.user.pinnedItems.nodes.length,
@@ -73,6 +81,10 @@ exports.handler = async (event) => {
     console.log(error);
     return {
       statusCode: 500,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": "Content-Type",
+      },
       body: JSON.stringify({
         status: "error",
         message: error.message || "Something went wrong!",
