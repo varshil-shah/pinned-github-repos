@@ -1,0 +1,20 @@
+service: pinned-github-repos
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  environment:
+    GITHUB_TOKEN: ${env:GITHUB_TOKEN}
+
+plugins:
+  - serverless-offline
+  - serverless-dotenv-plugin
+useDotenv: true
+
+functions:
+  api:
+    handler: index.handler
+    events:
+      - http:
+          path: user/{username}
+          method: get
